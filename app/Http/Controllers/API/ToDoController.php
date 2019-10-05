@@ -32,6 +32,7 @@ class ToDoController extends Controller
             'title' => 'required',
             'description' => 'required',
             'priority' => 'required',
+            'user_id' => 'required'
         ]);
 
         $todo = Todo::create($request->all());
