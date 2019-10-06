@@ -30,7 +30,6 @@ class ToDoController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
             'priority' => 'required',
             'user_id' => 'required'
         ]);
