@@ -25,7 +25,7 @@ class ToDoController extends Controller
     public function index()
     {
         // return new TodosResourceCollection(Todo::paginate());
-        $todos = DB::table('todos')->where('user_id', '=', Auth::id())->get();
+        $todos = DB::table('todos')->where('user_id', '=', Auth::id())->orderBy('created_at', 'DESC')->get();
         return $todos;
     }
 
