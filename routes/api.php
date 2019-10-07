@@ -19,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/todos', 'API\ToDoController');
+
+Route::post('/register', 'AuthController@register');
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');

@@ -7,17 +7,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TodoResource;
 use App\Http\Resources\TodosResourceCollection;
 use App\Todo;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ToDoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): TodosResourceCollection
+    public function index()
     {
-        return new TodosResourceCollection(Todo::paginate());
+        // return new TodosResourceCollection(Todo::paginate());
+        $todos = DB::table('todos')->where('user_id', '=', Auth::id())->get();
+        return $todos;
     }
 
     /**
