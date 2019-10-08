@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TodoResource;
-use App\Http\Resources\TodosResourceCollection;
 use App\Todo;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -24,7 +23,6 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        // return new TodosResourceCollection(Todo::paginate());
         $todos = DB::table('todos')->where('user_id', '=', Auth::id())->orderBy('created_at', 'DESC')->get();
         return $todos;
     }
