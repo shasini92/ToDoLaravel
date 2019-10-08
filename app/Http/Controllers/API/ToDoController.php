@@ -40,10 +40,9 @@ class ToDoController extends Controller
         $request->validate([
             'title' => 'required',
             'priority' => 'required',
-            'user_id' => 'required'
         ]);
 
-        $todo = Todo::create($request->all());
+        $todo = Todo::create($request->all() + ['user_id' => Auth::id()]);
 
         return new TodoResource($todo);
     }
@@ -70,7 +69,7 @@ class ToDoController extends Controller
      */
     public function update(Request $request, Todo $todo): TodoResource
     {
-        $todo->update($request->all());
+        $todo->update($request->all() + ['user_id' => Auth::id()]);
         return new TodoResource($todo);
     }
 
